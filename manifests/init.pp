@@ -49,7 +49,7 @@ class windows_certificate_authority (
   validate_re($validityperiod,'^(hours|days|weeks|months|years)$', 'The validity period specified does not match a valid validity period')
 
   # Install the Certificate Authority Role Service
-  windows_certificate_authority::install {'Install CA':} ->
+  class { 'windows_certificate_authority::install': } ->
   # Configure the Certificate Authority Role Service
-  windows_certificate_authority::adcscertificationauthority {'Configure CA':}
+  class { 'windows_certificate_authority::adcscertificationauthority': }
 }

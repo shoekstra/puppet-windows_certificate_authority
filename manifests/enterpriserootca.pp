@@ -9,7 +9,7 @@ class windows_certificate_authority::enterpriserootca (
     $validityperiodunits = $windows_certificate_authority::validityperiodunits
 ) {
   exec { 'Deploy Enterprise Root ADCS_CA':
-    command  => "Install-AdcsCertificationAuthority -Force -CAType $catype -CACommonName $cacommonname -CryptoProviderName '$cryptoprovider' -KeyLength $keylength -HashAlgorithmName $hashalgorithm -ValidityPeriod $validityperiod -ValidityPeriodUnits $validityperiodunits",
+    command  => "Install-AdcsCertificationAuthority -OverwriteExistingKey -Force -CAType $catype -CACommonName $cacommonname -CryptoProviderName \'$cryptoprovider\' -KeyLength $keylength -HashAlgorithmName $hashalgorithm -ValidityPeriod $validityperiod -ValidityPeriodUnits $validityperiodunits",
     provider => powershell,
     unless   => 'Test-Path HKLM:\System\CurrentControlSet\Services\CertSvc\Configuration' # Check if CA templates exist to determine if an existing configuration exist
   }
