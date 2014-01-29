@@ -33,7 +33,7 @@
 #   }
 #
 class windows_certificate_authority (
-    $cacommonname        = undef,
+    $cacommonname,
     $catype              = 'EnterpriseRootCa',
     $cryptoprovider      = 'RSA#Microsoft Software Key Storage Provider',
     $hashalgorithm       = 'SHA1',
@@ -41,7 +41,7 @@ class windows_certificate_authority (
     $keylength           = 2048,
     $parentca            = undef,
     $validityperiod      = 'years',
-    $validityperiodunits = 3,
+    $validityperiodunits = 5,
 ) {
   # Check the catype variable for valid entries
   validate_re($catype,'^(EnterpriseRootCA|EnterpriseSubordinateCA|StandaloneRootCA|StandaloneSubordinateCA)$', 'The CA Type specified does not match a valid CA Type')
